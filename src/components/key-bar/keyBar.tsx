@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Strat, wasdDirectionMap } from '../../data/Strat';
 import KeyArrow from './keyArrow';
+import './keyBar.css'
 
 type KeyBarProps = {
     strat: Strat;

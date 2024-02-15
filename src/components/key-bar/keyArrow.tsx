@@ -17,9 +17,8 @@ const ArrowKey: React.FC<KeyArrowProps> = ({ direction, index, currentIndex, fai
     let arrowSvg = '';
     let arrowStyle = (currentIndex > index) ? 'arrowCorrect' : 'arrow'
     arrowStyle = (failState) ? 'arrowFail' : arrowStyle
-    console.log(index);
-    console.log(arrowStyle);
     
+    // TODO: Connor rewrite this to use a map
     switch (direction) {
         case Direction.Up:
             arrowSvg = UpArrow;

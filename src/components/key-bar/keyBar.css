@@ -4,10 +4,6 @@
     margin: 10px;
 }
 
-.arrow:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
-
 .arrowCorrect {
     width: 100px;
     height: 100px;

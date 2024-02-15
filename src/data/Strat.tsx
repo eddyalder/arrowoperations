@@ -16,5 +16,6 @@ export interface Strat {
     name: string;
     directions: Direction[];
     points: number;
+    icon: string;
 }
 
