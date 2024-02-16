@@ -1,0 +1,15 @@
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.titleBox {
+    display: flex;
+    border: 2px solid black;
+    border-radius: 5px;
+    justify-content: center;
+}

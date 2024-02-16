@@ -1,24 +1,44 @@
 import React, { useEffect } from 'react';
-import { Strat, wasdDirectionMap } from '../../data/Strat';
+import { Strat, keyDirectionMap } from '../../data/Strat';
 import KeyArrow from './keyArrow';
 import './keyBar.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { removeStrat } from '../../store/slice';
+import { isKeyValid } from '../../constants/keyConstants';
 
-type KeyBarProps = {
-    strat: Strat;
-};
+const KeyBar = () => {
+    // Redux hooks
+    const dispatch = useDispatch();
+    const strats: Strat[] = useSelector((state: any) => state.strats);
 
-const KeyBar: React.FC<KeyBarProps> = ({ strat }) => {
     const [arrowIndexState, setArrowIndexState] = React.useState(0);
     const [failState, setFailState] = React.useState(false);
-    let arrowIndex = 0
+    let arrowIndex = 0;
+    let stratIndex = 0;
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'w' || event.key === 'a' || event.key === 's' || event.key === 'd') {
-                if (wasdDirectionMap[event.key] === strat.directions[arrowIndex]) {
+            if (isKeyValid(event.key)) {
+                if (keyDirectionMap[event.key] === strats[stratIndex].directions[arrowIndex]) {
                     setFailState(false)
                     arrowIndex++;
                     console.log("Correct Input");
+                    
+                    // If the strat is complete, remove it from the list 
+                    if (arrowIndex === strats[stratIndex].directions.length) {
+                        arrowIndex = 0;
+                        dispatch(removeStrat(strats[stratIndex].name));
+                        console.log(stratIndex);
+                        console.log(strats.length);
+
+                        // If there are more strats, move to the next one, else reset to the first of the next level
+                        if (stratIndex < strats.length) {
+                            stratIndex++;
+                        } else {
+                            stratIndex = 0;
+                        }
+                        console.log("Strat Complete");
+                    }
                 } else {
                     arrowIndex = 0;
                     console.log("Wrong Input");
@@ -31,6 +51,7 @@ const KeyBar: React.FC<KeyBarProps> = ({ strat }) => {
         document.addEventListener('keydown', handleKeyDown);
 
         return () => {
+            // Remove event listener on component dismount
             document.removeEventListener('keydown', handleKeyDown);
         };
     }, []);
@@ -46,9 +67,13 @@ const KeyBar: React.FC<KeyBarProps> = ({ strat }) => {
 
     return (
         <div className='keyBar'>
-            {strat.directions.map((direction, index) => (
-                <KeyArrow direction={direction} index={index} currentIndex={arrowIndexState} failState={failState}></KeyArrow>
-            ))}
+            {strats.length > 0 &&
+                <>
+                    {strats[stratIndex].directions.map((direction, index) => (
+                        <KeyArrow direction={direction} index={index} currentIndex={arrowIndexState} failState={failState}></KeyArrow>
+                    ))}
+                </>
+            }
         </div>
     );
 };

@@ -5,11 +5,15 @@ export enum Direction {
     Right = 'right',
 }
 
-export const wasdDirectionMap: { [x: string]: Direction } = {
+export const keyDirectionMap: { [x: string]: Direction } = {
     'w': Direction.Up,
     's': Direction.Down,
     'a': Direction.Left,
-    'd': Direction.Right
+    'd': Direction.Right,
+    'ArrowUp': Direction.Up,
+    'ArrowDown': Direction.Down,
+    'ArrowLeft': Direction.Left,
+    'ArrowRight': Direction.Right
 };
 
 export interface Strat {
@@ -18,4 +22,3 @@ export interface Strat {
     points: number;
     icon: string;
 }
-
