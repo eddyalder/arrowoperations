@@ -21,8 +21,8 @@ const StratBar = () => {
         <div className='stratBar'>
             {strats.length > 0 &&
                 <>
-                    {strats.map((strat) => (
-                        <StratItem strat={strat}></StratItem>
+                    {strats.map((strat, index) => (
+                        <StratItem key={index} strat={strat}></StratItem>
                     ))}
                 </>
             }
