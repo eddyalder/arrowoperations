@@ -34,12 +34,13 @@ const KeyBar = () => {
                 if (arrowIndex === strats[stratIndex].directions.length) {
                     playSound(stratCompleteSound);
                     arrowIndex = 0;
-                    dispatch(removeStrat(strats[stratIndex].name));
+                    dispatch(removeStrat(strats[stratIndex].id));
                     console.log(stratIndex);
                     console.log(strats.length);
 
                     // If there are more strats, move to the next one, else reset to the first of the next level
-                    if (stratIndex < strats.length) {
+                    // TODO: Fix this shit and keep level complete logic in one place
+                    if (stratIndex < strats.length - 1) {
                         stratIndex++;
                     } else {
                         stratIndex = 0;

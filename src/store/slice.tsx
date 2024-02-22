@@ -1,46 +1,38 @@
-import { Direction, Strat } from "../data/Strat";
-import StratLogo from '../assets/react.svg';
+import { Strat, stratTemplates } from "../data/Strat";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from 'uuid';
 
-const intitialState: Strat[] = [
-    {
-        name: 'Strat 1',
-        directions: [Direction.Up, Direction.Down, Direction.Left, Direction.Right],
-        points: 50,
-        icon: StratLogo
-    },
-    {
-        name: 'Strat 2',
-        directions: [Direction.Left, Direction.Right, Direction.Up, Direction.Down],
-        points: 50,
-        icon: StratLogo
-    },
-    {
-        name: 'Strat 3',
-        directions: [Direction.Down, Direction.Up, Direction.Right, Direction.Left],
-        points: 50,
-        icon: StratLogo
-    },
-    {
-        name: 'Strat 4',
-        directions: [Direction.Down, Direction.Up, Direction.Right, Direction.Left],
-        points: 50,
-        icon: StratLogo
-    },
-];
+const generateStrats = (stratCount: number): Strat[] => {
+    let strats: Strat[] = [];
+    for (let i = 0; i < stratCount; i++) { 
+        let randStrat = stratTemplates[Math.floor(Math.random() * (stratTemplates.length))]
+
+        const stratToAdd: Strat = {
+            name: randStrat.name,
+            id: uuidv4(),
+            directions: randStrat.directions,
+            points: randStrat.points,
+            icon: randStrat.icon
+        } 
+
+        strats.push(stratToAdd);
+    }
+    console.log(strats);
+    return strats;
+}
 
 export const stratSlice = createSlice({
     name: 'strats',
-    initialState: intitialState,
+    initialState: generateStrats(4),
     reducers: {
         addStrat: (state: Strat[], action: PayloadAction<Strat>) => {
             state.push(action.payload);
         },
         removeStrat: (state: Strat[], action: PayloadAction<string>) => {
-            return state.filter(strat => strat.name !== action.payload);
+            return state.filter(strat => strat.id !== action.payload);
         },
         resetStrats: (state: Strat[]) => {
-            return state = intitialState;
+            return state = generateStrats(4);
         }
     }
 });
