@@ -1,0 +1,161 @@
+.game-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.sequence-container {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.arrow-box {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(26, 26, 46, 0.6);
+    border: 2px solid var(--gray-dark);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.arrow-symbol {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--gray-light);
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+/* Active arrow - currently waiting for input */
+.arrow-box.active {
+    border-color: var(--neon-cyan);
+    background: rgba(0, 240, 255, 0.1);
+    box-shadow:
+        0 0 20px rgba(0, 240, 255, 0.4),
+        inset 0 0 20px rgba(0, 240, 255, 0.1);
+    animation: pulse-active 1.5s ease-in-out infinite;
+}
+
+.arrow-box.active .arrow-symbol {
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-cyan);
+    animation: pulse-symbol 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-active {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow:
+            0 0 20px rgba(0, 240, 255, 0.4),
+            inset 0 0 20px rgba(0, 240, 255, 0.1);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow:
+            0 0 30px rgba(0, 240, 255, 0.6),
+            inset 0 0 30px rgba(0, 240, 255, 0.15);
+    }
+}
+
+@keyframes pulse-symbol {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Completed arrow - correct input received */
+.arrow-box.completed {
+    border-color: var(--neon-green);
+    background: rgba(57, 255, 20, 0.1);
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+    animation: complete-flash 0.5s ease-out;
+}
+
+.arrow-box.completed .arrow-symbol {
+    color: var(--neon-green);
+    text-shadow: 0 0 10px var(--neon-green);
+}
+
+@keyframes complete-flash {
+    0% {
+        box-shadow: 0 0 30px rgba(57, 255, 20, 0.8);
+        transform: scale(1.15);
+    }
+
+    100% {
+        box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+        transform: scale(1);
+    }
+}
+
+/* Failed arrow - wrong input */
+.arrow-box.failed {
+    border-color: var(--neon-pink);
+    background: rgba(255, 0, 110, 0.2);
+    box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+    animation: shake 0.4s ease-in-out, failed-glow 0.4s ease-out;
+}
+
+.arrow-box.failed .arrow-symbol {
+    color: var(--neon-pink);
+    text-shadow: 0 0 15px var(--neon-pink);
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10px);
+    }
+
+    75% {
+        transform: translateX(10px);
+    }
+}
+
+@keyframes failed-glow {
+    0% {
+        box-shadow: 0 0 40px rgba(255, 0, 110, 0.8);
+    }
+
+    100% {
+        box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .arrow-box {
+        width: 60px;
+        height: 60px;
+    }
+
+    .arrow-symbol {
+        font-size: 2.5rem;
+    }
+
+    .sequence-container {
+        gap: 1rem;
+    }
+}
