@@ -1,5 +1,3 @@
-import StratLogo from '../assets/react.svg';
-
 export enum Direction {
     Up = 'ArrowUp',
     Down = 'ArrowDown',
