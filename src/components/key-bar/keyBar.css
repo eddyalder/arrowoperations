@@ -1,0 +1,42 @@
+.arrow {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    color: blue;
+}
+
+.arrowCorrect {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    /* This is gold lmao */
+    filter: brightness(0) saturate(100%) invert(77%) sepia(88%) saturate(2219%) hue-rotate(0deg) brightness(105%) contrast(104%);
+}
+
+.arrowFail {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    /* This is red */
+    filter: brightness(0) saturate(100%) invert(11%) sepia(95%) saturate(4901%) hue-rotate(345deg) brightness(95%) contrast(96%);
+    animation: shake 0.25s; 
+}
+
+.keyBar {
+    display: flex;
+    flex-direction: row;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}

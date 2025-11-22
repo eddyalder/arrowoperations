@@ -1,0 +1,10 @@
+.stratBar {
+    display: flex;
+    flex-direction: row;
+}
+
+.stratItem {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
