@@ -156,17 +156,43 @@ function App() {
 
         {gameState === GameState.Idle && (
           <div className="start-screen fade-in">
-            <p className="instructions">
-              Input the arrow sequences using <span className="key-hint">ARROW KEYS</span> or <span className="key-hint">WASD</span>
-            </p>
-            <p className="instructions">
-              Complete sequences before time runs out!
-            </p>
-            <p className="instructions">
-              Score is based on time remaining and sequence length.
-            </p>
+            <div className="scrollable-content">
+              <div className="mission-briefing">
+                <div className="briefing-header">
+                  <span className="status-indicator">●</span>
+                  <span className="briefing-label">MISSION BRIEFING</span>
+                </div>
+                <p className="mission-objective">
+                  Input arrow sequences before time expires. Progressive difficulty increases sequence length and reduces time limits.
+                </p>
+              </div>
+
+              <div className="controls-demo">
+                <div className="demo-label">CONTROL INPUTS</div>
+                <div className="control-hint">
+                  <span className="key-badge">↑ ↓ ← →</span>  or  <span className="key-badge">W A S D</span>
+                </div>
+              </div>
+
+              <div className="features-grid">
+                <div className="feature-item">
+                  <div className="feature-icon">⚡</div>
+                  <div className="feature-text">Time-Based Scoring</div>
+                </div>
+                <div className="feature-item">
+                  <div className="feature-icon">📈</div>
+                  <div className="feature-text">Progressive Difficulty</div>
+                </div>
+                <div className="feature-item">
+                  <div className="feature-icon">🎯</div>
+                  <div className="feature-text">Sequence Mastery</div>
+                </div>
+              </div>
+            </div>
+
             <button onClick={startGame} className="start-button">
-              START MISSION
+              <span className="button-text">INITIATE OPERATION</span>
+              <span className="button-arrow">→</span>
             </button>
           </div>
         )}

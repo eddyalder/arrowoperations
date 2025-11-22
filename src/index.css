@@ -52,12 +52,13 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-width: 320px;
   min-height: 100vh;
   background: var(--bg-dark);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Cyberpunk Grid Background */

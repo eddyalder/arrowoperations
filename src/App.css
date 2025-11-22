@@ -3,9 +3,10 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
   z-index: 2;
+  padding: 3rem 0;
 }
 
 .app-container {
@@ -29,10 +30,8 @@
 .start-screen {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  max-width: 600px;
-  padding: 3rem;
+  max-width: 700px;
+  max-height: 85vh;
   background: rgba(26, 26, 46, 0.8);
   border: 2px solid var(--neon-cyan);
   border-radius: 12px;
@@ -40,34 +39,213 @@
     0 0 30px rgba(0, 240, 255, 0.3),
     inset 0 0 30px rgba(0, 240, 255, 0.05);
   backdrop-filter: blur(10px);
+  overflow: hidden;
 }
 
-.instructions {
-  font-family: var(--font-body);
+/* Scrollable Content Area */
+.scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Custom Scrollbar */
+.scrollable-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+  background: rgba(10, 10, 15, 0.4);
+  border-radius: 4px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-magenta);
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+}
+
+/* Mission Briefing */
+.mission-briefing {
+  background: rgba(10, 10, 15, 0.6);
+  border-left: 3px solid var(--neon-cyan);
+  padding: 1.2rem;
+  border-radius: 4px;
+}
+
+.briefing-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.status-indicator {
+  color: var(--neon-green);
   font-size: 1.2rem;
-  font-weight: 400;
+  animation: pulse-indicator 2s ease-in-out infinite;
+}
+
+@keyframes pulse-indicator {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.briefing-label {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
   color: var(--neon-cyan);
-  text-align: center;
+}
+
+.mission-objective {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
   line-height: 1.6;
+  color: var(--gray-light);
   margin: 0;
 }
 
-.key-hint {
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--neon-magenta);
-  text-shadow: 0 0 10px var(--neon-magenta);
-  padding: 0.2em 0.5em;
-  background: rgba(255, 0, 255, 0.1);
-  border-radius: 4px;
-  white-space: nowrap;
+/* Simplified Controls Demo */
+.controls-demo {
+  background: rgba(10, 10, 15, 0.4);
+  padding: 1.2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  text-align: center;
 }
 
+.demo-label {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--neon-magenta);
+  margin-bottom: 1rem;
+}
+
+.control-hint {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--gray-light);
+  line-height: 1.6;
+}
+
+.key-badge {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.1);
+  padding: 0.3em 0.6em;
+  border-radius: 4px;
+  border: 1px solid var(--neon-cyan);
+  white-space: nowrap;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(10, 10, 15, 0.4);
+  border: 1px solid rgba(157, 0, 255, 0.3);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  border-color: var(--neon-purple);
+  background: rgba(157, 0, 255, 0.1);
+  transform: translateY(-3px);
+}
+
+.feature-icon {
+  font-size: 1.8rem;
+  filter: grayscale(0.3);
+}
+
+.feature-text {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--neon-cyan);
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* Fixed Start Button */
 .start-button {
-  margin-top: 1rem;
-  padding: 1.2rem 3rem;
-  font-size: 1.3rem;
-  animation: pulse-border 2s ease-in-out infinite;
+  margin: 0;
+  padding: 1.3rem 3rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 10px 10px;
+  border-top: 2px solid var(--neon-cyan);
+  flex-shrink: 0;
+}
+
+.button-text {
+  position: relative;
+  z-index: 1;
+}
+
+.button-arrow {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.start-button:hover .button-arrow {
+  transform: translateX(5px);
+}
+
+.start-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(0, 240, 255, 0.2);
+  transform: translateX(0);
+  transition: width 0.6s ease;
+}
+
+.start-button:hover::after {
+  width: 100%;
 }
 
 /* Game Screen */
@@ -101,8 +279,50 @@
     padding: 2rem 1.5rem;
   }
 
-  .instructions {
+  .mission-briefing {
+    padding: 1.2rem;
+  }
+
+  .mission-objective {
     font-size: 1rem;
+  }
+
+  .controls-demo {
+    padding: 1.2rem;
+  }
+
+  .key-options {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .demo-key {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .or-divider {
+    transform: rotate(90deg);
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .feature-item {
+    flex-direction: row;
+    justify-content: center;
+    padding: 0.8rem;
+  }
+
+  .feature-icon {
+    font-size: 1.5rem;
+  }
+
+  .feature-text {
+    font-size: 0.85rem;
   }
 
   .start-button {
