@@ -11,6 +11,7 @@ import {
   getTimeLimit,
   calculateScore
 } from './constants/stratConstants';
+import { playSound } from './utils/sounds';
 
 const STORAGE_KEY = 'key-strat-hero-highscore';
 
@@ -115,6 +116,7 @@ function App() {
 
         if (newIndex >= currentSequence.length) {
           // Sequence completed!
+          playSound('stratComplete');
           const earnedScore = calculateScore(timeRemaining, currentSequence.length);
           setScore((prev) => prev + earnedScore);
 
@@ -131,6 +133,7 @@ function App() {
         }
       } else {
         // Wrong input - reset sequence
+        playSound('arrowIncorrect');
         setIsCorrect(false);
         setCurrentIndex(0);
 
