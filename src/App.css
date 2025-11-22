@@ -340,3 +340,65 @@
     font-size: 0.9rem;
   }
 }
+
+/* Credit Widget */
+.credit-widget {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.2rem;
+  background: rgba(26, 26, 46, 0.9);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--neon-cyan);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow:
+    0 0 15px rgba(0, 240, 255, 0.3),
+    inset 0 0 10px rgba(0, 240, 255, 0.05);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.credit-widget:hover {
+  border-color: var(--neon-magenta);
+  color: var(--neon-magenta);
+  box-shadow:
+    0 0 20px rgba(255, 0, 255, 0.5),
+    inset 0 0 15px rgba(255, 0, 255, 0.1);
+  transform: translateY(-3px);
+}
+
+.credit-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.credit-widget:hover .credit-icon {
+  transform: scale(1.1);
+}
+
+.credit-text {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .credit-widget {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .credit-icon {
+    width: 18px;
+    height: 18px;
+  }
+}

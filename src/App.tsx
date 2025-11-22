@@ -231,6 +231,17 @@ function App() {
           />
         )}
       </div>
+
+      {/* Credit Widget */}
+      <a
+        href="https://www.edwardalder.dev/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="credit-widget"
+      >
+        <img src="/ea-favicon.svg" alt="EA" className="credit-icon" />
+        <span className="credit-text">Made by Edward Alder</span>
+      </a>
     </div>
   );
 }
